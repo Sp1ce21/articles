@@ -1,0 +1,32 @@
+{
+  "name": "articles",
+  "version": "1.0.0",
+  "description": "Blog website",
+  "author": "Rostislav <spellmane21@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "client-dev": "yarn workspace client dev",
+    "server-dev": "yarn workspace server dev",
+    "client-start": "yarn workspace client start",
+    "server-start": "yarn workspace server start",
+    "client-build": "yarn workspace client build",
+    "server-build": "yarn workspace server build",
+    "lint": "eslint packages/**/*.{ts,tsx}",
+    "format": "prettier --write 'packages/*/**/*.{js,jsx,ts,tsx,json,md}'",
+    "fix": "yarn lint && yarn format"
+  },
+  "dependencies": {
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.11.0",
+    "eslint": "^8",
+    "eslint-config-next": "14.0.3",
+    "prettier": "^3.1.0",
+    "prettier-plugin-tailwindcss": "^0.5.7"
+  }
+}
