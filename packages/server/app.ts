@@ -3,6 +3,7 @@ import logger from "./utils/logger";
 import dotenv from "dotenv";
 import swaggerDocs from "./utils/swagger";
 import routes from "./routes";
+import { initRSSParsing } from "./utils/initRSSParsing";
 
 dotenv.config();
 
@@ -16,6 +17,8 @@ app.listen(port, async () => {
   logger.info(`App is running at http://localhost:${port}`);
 
   routes(app);
+
+  initRSSParsing();
 
   swaggerDocs(app, port as number);
 });
