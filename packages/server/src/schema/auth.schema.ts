@@ -49,18 +49,6 @@ import { object, string, TypeOf } from "zod";
  *        properties:
  *          token:
  *            type: string
- *
- *      CurrentUserResponse:
- *            type: object
- *            properties:
- *                id:
- *                  type: string
- *                email:
- *                  type: string
- *                createdAt:
- *                  type: string
- *                updateAt:
- *                  type: string
  */
 
 export const registerUserSchema = object({

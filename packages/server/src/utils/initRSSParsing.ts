@@ -56,9 +56,12 @@ const parseAndCreatePosts = async (articles: RSSActicle[]) => {
 };
 
 const isInDatabase = async (article: RSSActicle) => {
-  const post = await prisma.post.findUnique({
+  const post = await prisma.post.findFirst({
     where: {
       link: article.link[0],
+    },
+    orderBy: {
+      createdAt: "desc",
     },
   });
 
@@ -82,11 +85,11 @@ export const initRSSParsing = async () => {
       return;
     }
 
-    let indexes: number[] = [];
+    const indexes: number[] = [];
     let isParsing = true;
     let i = 0;
 
-    for await (let article of allArticles) {
+    for await (const article of allArticles) {
       if (isParsing) {
         const existingPost = await isInDatabase(article);
         if (existingPost) {

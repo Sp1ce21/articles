@@ -17,6 +17,8 @@ import z, { TypeOf } from "zod";
  *                type: string
  *              categories:
  *                type: array
+ *                items:
+ *                  type: string
  *              createdAt:
  *                type: string
  *
@@ -29,6 +31,22 @@ import z, { TypeOf } from "zod";
  *              type: array
  *              items:
  *                  $ref: '#/components/schemas/PostItem'
+ *
+ *      CreatePostInput:
+ *        type: object
+ *        properties:
+ *          title:
+ *            type: string
+ *          description:
+ *            type: string
+ *          categories:
+ *            type: array
+ *            items:
+ *              type: string
+ *
+ *      CreatePostResponse:
+ *          $ref: '#/components/schemas/PostItem'
+ *
  *
  *      ChangePostInput:
  *          type: object
@@ -48,7 +66,19 @@ import z, { TypeOf } from "zod";
  *          $ref: '#/components/schemas/PostItem'
  */
 
-export const postSchema = z.object({
+export const createPostSchema = z.object({
+  body: z.object({
+    title: z.string({
+      required_error: "Title is required",
+    }),
+    description: z.string({
+      required_error: "Description is required",
+    }),
+    categories: z.array(z.string()),
+  }),
+});
+
+export const updatePostSchema = z.object({
   body: z.object({
     id: z.string({ required_error: "Id is required" }),
     title: z.string({
@@ -61,4 +91,5 @@ export const postSchema = z.object({
   }),
 });
 
-export type PostInput = TypeOf<typeof postSchema>;
+export type CreatePostInput = TypeOf<typeof createPostSchema>;
+export type UpdatePostInput = TypeOf<typeof updatePostSchema>;

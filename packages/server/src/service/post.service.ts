@@ -31,6 +31,12 @@ export const getPostById = async (id: string) => {
   });
 };
 
+export const createPost = async (post: Post) => {
+  return await prisma.post.create({
+    data: { ...post, link: null },
+  });
+};
+
 export const updatePostById = async (id: string, updatedPost: Post) => {
   return await prisma.post.update({
     where: {

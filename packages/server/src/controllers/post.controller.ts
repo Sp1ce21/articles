@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import log from "../utils/logger";
 import {
+  createPost,
   deletePostById,
   getPostById,
   getPosts,
@@ -45,6 +46,17 @@ export async function updatePostByIdHandler(req: Request, res: Response) {
 
     const post = await updatePostById(id, updatedPost);
     return res.send(post);
+  } catch (e: any) {
+    log.error(e);
+    return res.status(409).send(e.message);
+  }
+}
+
+export async function createPostHandler(req: Request, res: Response) {
+  try {
+    const post = req.body;
+    const createdPost = await createPost(post);
+    return res.send(createdPost);
   } catch (e: any) {
     log.error(e);
     return res.status(409).send(e.message);

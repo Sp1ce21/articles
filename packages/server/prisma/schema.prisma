@@ -19,7 +19,7 @@ model User {
 
 model Post {
   id String @id @default(auto()) @map("_id") @db.ObjectId
-  link String @unique
+  link String?
   title String
   description String
   categories String[]
