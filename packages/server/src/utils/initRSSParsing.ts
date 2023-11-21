@@ -2,8 +2,8 @@ import axios from "axios";
 import { parseString } from "xml2js";
 import cron from "node-cron";
 import log from "./logger";
-import { RSSActicle } from "index";
-import prisma from "./../libs/prismadb";
+import { RSSActicle } from "../types";
+import prisma from "../libs/prismadb";
 import { Post } from "@prisma/client";
 
 const RSS_URL = "https://techcrunch.com/feed";

@@ -1,7 +1,7 @@
 import { Express, Request, Response } from "express";
 import swaggerJsdoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
-import { version } from "../package.json";
+import { version } from "../../package.json";
 import log from "./logger";
 
 const options: swaggerJsdoc.Options = {
@@ -26,7 +26,7 @@ const options: swaggerJsdoc.Options = {
       },
     ],
   },
-  apis: ["./routes.ts"],
+  apis: ["./src/routes/*.ts", "./src/schema/*.ts"],
 };
 
 const swaggerSpec = swaggerJsdoc(options);
