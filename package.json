@@ -9,12 +9,12 @@
     "packages/*"
   ],
   "scripts": {
-    "client-dev": "yarn workspace client dev",
-    "server-dev": "yarn workspace server dev",
-    "client-start": "yarn workspace client start",
-    "server-start": "yarn workspace server start",
-    "client-build": "yarn workspace client build",
-    "server-build": "yarn workspace server build",
+    "client:dev": "yarn workspace client dev",
+    "server:dev": "yarn workspace server dev",
+    "client:start": "yarn workspace client start",
+    "server:start": "yarn workspace server start",
+    "client:build": "yarn workspace client build",
+    "server:build": "yarn workspace server build",
     "lint": "eslint packages/**/*.{ts,tsx}",
     "format": "prettier --write 'packages/*/**/*.{js,jsx,ts,tsx,json,md}'",
     "fix": "yarn lint && yarn format"
