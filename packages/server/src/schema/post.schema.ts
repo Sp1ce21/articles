@@ -34,6 +34,10 @@ import z, { TypeOf } from "zod";
  *
  *      CreatePostInput:
  *        type: object
+ *        required:
+ *          - title
+ *          - description
+ *          - categories
  *        properties:
  *          title:
  *            type: string
@@ -50,6 +54,11 @@ import z, { TypeOf } from "zod";
  *
  *      ChangePostInput:
  *          type: object
+ *          required:
+ *           - id
+ *           - title
+ *           - description
+ *           - categories
  *          properties:
  *              id:
  *                  type: string
