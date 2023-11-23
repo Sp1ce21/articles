@@ -10,9 +10,13 @@ import {
 
 export async function getPostsHandler(req: Request, res: Response) {
   try {
-    const { page = 1, limit = 10 } = req.params;
+    const { page = 1, limit = 10, search } = req.query;
 
-    const postsData = await getPosts({ page: +page, limit: +limit });
+    const postsData = await getPosts({
+      page: +page,
+      limit: +limit,
+      search: search as string,
+    });
 
     return res.send(postsData);
   } catch (e: any) {

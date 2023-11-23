@@ -4,20 +4,66 @@ import prisma from "../libs/prismadb";
 type PostsQuery = {
   page: number;
   limit: number;
+  search?: string;
 };
 
 export const getPosts = async (query: PostsQuery) => {
-  const { page, limit } = query;
+  const { page, limit, search } = query;
+
+  const searchString = search || "";
 
   const [posts, total] = await Promise.all([
     prisma.post.findMany({
+      where: {
+        OR: [
+          {
+            title: {
+              contains: searchString,
+              mode: "insensitive",
+            },
+          },
+          {
+            description: {
+              contains: searchString,
+              mode: "insensitive",
+            },
+          },
+          {
+            categories: {
+              has: searchString.toLowerCase(),
+            },
+          },
+        ],
+      },
       skip: (page - 1) * limit,
       take: limit,
       orderBy: {
         createdAt: "desc",
       },
     }),
-    prisma.post.count(),
+    prisma.post.count({
+      where: {
+        OR: [
+          {
+            title: {
+              contains: searchString,
+              mode: "insensitive",
+            },
+          },
+          {
+            description: {
+              contains: searchString,
+              mode: "insensitive",
+            },
+          },
+          {
+            categories: {
+              has: searchString.toLowerCase(),
+            },
+          },
+        ],
+      },
+    }),
   ]);
 
   return { posts, total };

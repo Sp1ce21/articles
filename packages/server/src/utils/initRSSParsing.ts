@@ -31,7 +31,10 @@ const createPosts = async (posts: any) => {
   posts.forEach((post: Post) => {
     promises.push(
       prisma.post.create({
-        data: post,
+        data: {
+          ...post,
+          categories: post.categories.map(category => category.toLowerCase()),
+        },
       }),
     );
     log.info(`Adding post: ${post.link}`);

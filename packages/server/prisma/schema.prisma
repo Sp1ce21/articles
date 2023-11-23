@@ -13,6 +13,7 @@ model User {
   id             String   @id @default(auto()) @map("_id") @db.ObjectId
   email          String   @unique
   hashedPassword String
+  role           Role @default(USER)
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
 }
@@ -24,4 +25,9 @@ model Post {
   description String
   categories String[]
   createdAt DateTime? @default(now())
+}
+
+enum Role {
+  USER
+  ADMIN
 }

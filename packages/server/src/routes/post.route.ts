@@ -20,6 +20,19 @@ const postRoutes = () => {
    *   tags:
    *   - Post
    *   summary: Get posts
+   *   parameters:
+   *    - name: page
+   *      in: query
+   *      description: Current page
+   *      required: false
+   *      schema:
+   *        type: number
+   *    - name: search
+   *      in: query
+   *      description: Search string
+   *      required: false
+   *      schema:
+   *        type: string
    *   responses:
    *    200:
    *      description: Success
