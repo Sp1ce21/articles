@@ -15,6 +15,11 @@ export enum InputTypes {
   NUMBER = "number",
 }
 
+export enum InputSizes {
+  MEDIUM = "medium",
+  SMALL = "small",
+}
+
 interface CustomInputProps {
   register: UseFormRegister<FieldValues>;
   errors: FieldErrors;
@@ -23,8 +28,9 @@ interface CustomInputProps {
   variant?: InputStyleTypes;
   fullWidth?: boolean;
   className?: string;
+  size?: InputSizes;
   type?: InputTypes;
-  defaultValue?: string | number
+  multiline?: boolean;
 }
 
 const CustomInput: React.FC<CustomInputProps> = ({
@@ -32,6 +38,7 @@ const CustomInput: React.FC<CustomInputProps> = ({
   id,
   variant = InputStyleTypes.OUTLINED,
   type = InputTypes.TEXT,
+  size = InputSizes.MEDIUM,
   errors,
   ...prop
 }) => {
@@ -41,7 +48,7 @@ const CustomInput: React.FC<CustomInputProps> = ({
       error={!!errors[id]}
       helperText={(errors[id]?.message || "") as string}
       type={type}
-      size='small'
+      size={size}
       variant={variant}
       fullWidth
       {...register(id)}

@@ -42,13 +42,17 @@ const LoginForm: React.FC<LoginFormProps> = () => {
 
   const mutation = useMutation(fetchLogin, {
     onSuccess: data => {
+      if (!data) {
+        toast.error("Something went wrong");
+        return;
+      }
       saveToken(data);
       toast.success("Logged in");
       router.push("/");
       router.refresh();
     },
     onError: error => {
-      console.error("Error logging in", error);
+      console.log("Error logging in", error);
     },
   });
 

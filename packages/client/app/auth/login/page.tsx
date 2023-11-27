@@ -4,7 +4,7 @@ import LoginForm from "./LoginForm";
 async function LoginPage() {
   return (
     <Container>
-      <div className="mx-auto w-full max-w-[600px] bg-slate-100 mt-[80px]">
+      <div className="mx-auto mt-[80px] w-full max-w-[600px] bg-slate-100">
         <LoginForm />
       </div>
     </Container>

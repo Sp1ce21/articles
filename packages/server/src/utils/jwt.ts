@@ -8,6 +8,14 @@ export function signJwt(object: any, options?: jwt.SignOptions | undefined) {
 
 export function verifyJwt(token: string) {
   try {
+    if (!token) {
+      return {
+        valid: false,
+        expired: "invalid jwt",
+        decoded: null,
+      };
+    }
+
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     return {
       valid: true,
@@ -15,7 +23,6 @@ export function verifyJwt(token: string) {
       decoded,
     };
   } catch (e: any) {
-    console.error(e);
     return {
       valid: false,
       expired: e.message === "jwt expired",

@@ -18,8 +18,8 @@ const Posts: React.FC<PostsProps> = ({ posts, total }) => {
         <Filters />
       </div>
       <div className="mb-10 flex flex-col gap-8">
-        {posts.length !== 0 ? (
-          posts.map(post => <PostItem item={post} key={post.id} />)
+        {posts?.length !== 0 ? (
+          posts?.map(post => <PostItem item={post} key={post.id} />)
         ) : (
           <p className="text-center">There are no posts</p>
         )}
